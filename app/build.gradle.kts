@@ -52,7 +52,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.datastore.preferences)
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+    implementation(libs.kotlinx.serialization.json)
     implementation("androidx.datastore:datastore:1.1.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

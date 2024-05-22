@@ -39,7 +39,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             DataStoreTheme {
 
-              
             val settingsState = dataStoreManager
                 .getSettings()
                 .collectAsState(initial = SettingsData() )
