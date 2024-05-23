@@ -26,7 +26,11 @@ class ProtoDataStoreManager(val context: Context) {
             data.copy(textSize = size)
         }
     }
-
+    suspend fun saveSelectedOption(option: Options) {
+        context.protoDataStore.updateData { data ->
+            data.copy(selectedOption = option)
+        }
+    }
     suspend fun saveSettings(settingsData: SettingsData) {
         context.protoDataStore.updateData {
             settingsData

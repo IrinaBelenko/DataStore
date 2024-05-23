@@ -7,4 +7,5 @@ import kotlinx.serialization.Serializable
 data class SettingsData(
     val textSize: Int = 40,
     val bgColor: ULong = Pink.value,
+    val selectedOption: Options = Options.OPTION_1
 )
