@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -53,7 +54,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color(settingsState.value.bgColor)
                 ) {
-                    MainScreen(dataStoreManager, settingsState.value.textSize)
+                    MainScreen(dataStoreManager, settingsState)
                 }
             }
         }
@@ -61,7 +62,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreen(dataStoreManager: ProtoDataStoreManager, textSize: Int) {
+fun MainScreen(dataStoreManager: ProtoDataStoreManager, settingsState: State<SettingsData>) {
     val coroutine = rememberCoroutineScope()
     var selectedOption by remember { mutableStateOf<Options?>(null) }
     val options = Options.entries.toTypedArray()
@@ -80,7 +81,7 @@ fun MainScreen(dataStoreManager: ProtoDataStoreManager, textSize: Int) {
             Text(
                 text = "Some text",
                 color = Color.White,
-                fontSize = textSize.sp
+                fontSize = settingsState.value.textSize.sp
             )
         }
         Button(onClick = {
@@ -122,7 +123,7 @@ fun MainScreen(dataStoreManager: ProtoDataStoreManager, textSize: Int) {
                     modifier = Modifier.padding(start = 8.dp)
                 )
                 RadioButton(
-                    selected = selectedOption == option,
+                    selected = settingsState.value.selectedOption == option,
                     onClick = {
                         selectedOption = option
                         coroutine.launch {
